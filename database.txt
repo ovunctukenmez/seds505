@@ -1,0 +1,51 @@
+﻿CREATE TABLE users (
+	id int(11) UNSIGNED NOT NULL auto_increment,
+	join_date int(11) NOT NULL default 0,
+	email varchar(100),
+	password varchar(100),
+	first_name varchar(100),
+	last_name varchar(100),
+	city varchar(20),
+	is_deleted TINYINT(1) NOT NULL DEFAULT 0,
+	PRIMARY KEY (id),
+	KEY (email, password),
+	KEY (is_deleted)
+) ENGINE=MyISAM CHARSET=utf8;
+
+CREATE TABLE listings (
+	id int(11) UNSIGNED NOT NULL auto_increment,
+    user_id int(8),
+	fish_type varchar(50),
+    fish_weight float UNSIGNED,
+    fish_height float UNSIGNED,
+	fisherman varchar(200),
+    starting_price float UNSIGNED,
+    current_price float UNSIGNED,
+	is_active TINYINT(1) NOT NULL DEFAULT 0,
+	is_sold TINYINT(1) NOT NULL DEFAULT 0,
+	is_deleted TINYINT(1) NOT NULL DEFAULT 0,
+	PRIMARY KEY (id),
+	FOREIGN KEY (user_id) REFERENCES users (id),
+	KEY (is_deleted)
+) ENGINE=MyISAM CHARSET=utf8;
+
+﻿CREATE TABLE listing_photos (
+	id int(11) UNSIGNED NOT NULL auto_increment,
+    listing_id int(8),
+	photo_url varchar(200),
+	is_deleted TINYINT(1) NOT NULL DEFAULT 0,
+	PRIMARY KEY (id),
+	FOREIGN KEY (listing_id) REFERENCES listings (id),
+	KEY (is_deleted)
+) ENGINE=MyISAM CHARSET=utf8;
+
+﻿CREATE TABLE listing_bids (
+	id int(11) UNSIGNED NOT NULL auto_increment,
+    listing_id int(8),
+	bidder varchar(200),
+	bid_amount float UNSIGNED,
+	is_deleted TINYINT(1) NOT NULL DEFAULT 0,
+	PRIMARY KEY (id),
+	FOREIGN KEY (listing_id) REFERENCES listings (id),
+	KEY (is_deleted)
+) ENGINE=MyISAM CHARSET=utf8;
