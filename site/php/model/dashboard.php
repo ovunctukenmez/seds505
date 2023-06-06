@@ -127,4 +127,56 @@ $stmt->closeCursor();
 $page_vars['listings'] = $listings;
 // listings - end
 
+// passive listings
+$passive_listings                 = array();
+$passive_listings['rows']         = array();
+$passive_listings['total']        = 0;
+
+$sql
+    = <<<EOF
+SELECT
+SQL_CALC_FOUND_ROWS
+t1.id,
+t1.fish_weight,
+t1.fish_height,
+t1.fisherman,
+t1.fish_type,
+t1.starting_price,
+t1.current_price,
+(SELECT COUNT(1) FROM listing_bids WHERE listing_id = t1.id) AS bid_count
+FROM listings t1
+WHERE
+t1.is_active = 0
+AND t1.is_deleted = 0
+ORDER BY t1.id DESC;
+
+SELECT FOUND_ROWS();
+EOF;
+
+$stmt = $db->prepare($sql);
+if ($stmt === false) {
+    $result_array['page_success']  = false;
+    $result_array['page_errors'][] = 'fetchListings';
+    goto end_of_page;
+}
+
+$r = $stmt->execute();
+if ($r === false) {
+    $result_array['page_success']  = false;
+    $result_array['page_errors'][] = 'fetchListings';
+    goto end_of_page;
+}
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    $photos = isset($listing_photos[$row['id']]) ? $listing_photos[$row['id']] : [];
+    $row['photos'] = $photos;
+    $passive_listings['rows'][] = $row;
+}
+
+$stmt->nextRowset();
+$listings['total']      = $stmt->fetchColumn();
+$stmt->closeCursor();
+
+$page_vars['passive_listings'] = $passive_listings;
+// passive listings - end
+
 end_of_page:
