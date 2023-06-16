@@ -56,7 +56,13 @@
                             <td><?php echo htmlspecialchars($row['fish_height']); ?> CM</td>
                             <td><?php echo htmlspecialchars($row['starting_price']); ?> TL</td>
                             <td><?php echo htmlspecialchars($row['current_price']); ?> TL</td>
-                            <td><?php echo htmlspecialchars($row['bid_count']); ?></td>
+                            <td>
+                                <?php if ($row['bid_count'] > 0): ?>
+                                    <a href="listing_bids.php?id=<?php echo $row['id']; ?>"><?php echo htmlspecialchars($row['bid_count']); ?></a>
+                                <?php else: ?>
+                                    <?php echo htmlspecialchars($row['bid_count']); ?>
+                                <?php endif; ?>
+                            </td>
                             <td>
                                 <a href="bid.php?id=<?php echo $row['id']; ?>">Bid</a>
                             </td>
