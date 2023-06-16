@@ -29,7 +29,7 @@
                      role="alert"><?php echo $data['result_array']['page_errors'][0]; ?></div>
             <?php else: ?>
 
-                <p><a href="new_listing.php">New Listing</a></p>
+                <p><a href="new_listing.php">Create New Listing</a></p>
 
                 <p><strong>Active Fish Listings (<?php echo $data['page_vars']['listings']['total']; ?>)</strong></p>
                 <table class="table table-bordered table-striped">
