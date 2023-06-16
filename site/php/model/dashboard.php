@@ -85,6 +85,7 @@ t1.fisherman,
 t1.fish_type,
 t1.starting_price,
 t1.current_price,
+t1.is_sold,
 (SELECT COUNT(1) FROM listing_bids WHERE listing_id = t1.id) AS bid_count
 FROM listings t1
 WHERE
@@ -143,6 +144,7 @@ t1.fisherman,
 t1.fish_type,
 t1.starting_price,
 t1.current_price,
+t1.is_sold,
 (SELECT COUNT(1) FROM listing_bids WHERE listing_id = t1.id) AS bid_count
 FROM listings t1
 WHERE
@@ -173,7 +175,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 }
 
 $stmt->nextRowset();
-$listings['total']      = $stmt->fetchColumn();
+$passive_listings['total'] = $stmt->fetchColumn();
 $stmt->closeCursor();
 
 $page_vars['passive_listings'] = $passive_listings;
