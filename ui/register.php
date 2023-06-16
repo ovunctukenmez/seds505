@@ -32,28 +32,30 @@
                     <div class="alert alert-danger" role="alert"><?php echo $data['page_vars']['form_errors'][0]; ?></div>
 	            <?php endif; ?>
 
+                <h1>REGISTER</h1>
                 <div class="well login">
-                    <!--REGISTER FORM - BEGIN -->
+                    <!--REGISTRATION FORM - BEGIN -->
                     <form class="form-horizontal" name="" action="" method="post" autocomplete="off">
                         <div class="form-group">
-                            <label for="username" class="col-sm-4 control-label">Username</label>
+                            <label for="email" class="col-sm-4 control-label">Email Address</label>
                             <div class="col-sm-8">
                                 <input class="form-control"
-                                       type="text"
-                                       name="username"
-                                       id="username"
-                                       placeholder="Username"
+                                       required
+                                       type="email"
+                                       name="email"
+                                       id="email"
+                                       placeholder="Email Address"
                                        autocomplete="off"
-                                       value="<?php if (isset($data['page_vars']['post_values']['username'])) {
-                                           echo htmlspecialchars($data['page_vars']['post_values']['username']);
+                                       value="<?php if (isset($data['page_vars']['post_values']['email'])) {
+                                           echo htmlspecialchars($data['page_vars']['post_values']['email']);
                                        } ?>">
                             </div>
                         </div>
-
                         <div class="form-group">
                             <label for="user_password" class="col-sm-4 control-label">Password</label>
                             <div class="col-sm-8">
                                 <input class="form-control"
+                                       required
                                        type="password"
                                        name="user_password"
                                        id="user_password"
@@ -66,13 +68,32 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="user_password2" class="col-sm-4 control-label">Password (Re)</label>
+                            <div class="col-sm-8">
+                                <input class="form-control"
+                                       required
+                                       type="password"
+                                       name="user_password2"
+                                       id="user_password2"
+                                       placeholder="Password (Re)"
+                                       autocomplete="off"
+                                       value="<?php if (isset($data['page_vars']['post_values']['user_password2'])) {
+                                           echo htmlspecialchars($data['page_vars']['post_values']['user_password2']);
+                                       } ?>">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             <div class="col-sm-offset-4 col-sm-8">
-                                <button class="btn btn-success" name="submit_btn" id="btn_submit" type="submit">Login</button>
+                                <button class="btn btn-success" name="submit_btn" id="btn_submit" type="submit">Register</button>
                             </div>
                         </div>
 
                     </form>
-                    <!--REGISTER FORM - END -->
+                    <!--REGISTRATION FORM - END -->
+
+                    <p><a href="login.php"><i class="fa fa-user"></i> Login</a></p>
+
                 </div>
 
                 <?php if ($data['page_vars']['is_form_submitted'] == true && $data['page_vars']['form_success'] == false) : ?>
