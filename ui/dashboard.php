@@ -43,7 +43,7 @@
                         <th>Current Price</th>
                         <th>Bid Count</th>
                         <th>Bid</th>
-                        <th>Sell Fish</th>
+                        <th>Sell/Unsell Fish</th>
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
@@ -58,10 +58,14 @@
                             <td><?php echo htmlspecialchars($row['current_price']); ?> TL</td>
                             <td><?php echo htmlspecialchars($row['bid_count']); ?></td>
                             <td>
-                                <a href="#">Bid</a> (TODO)
+                                <a href="bid.php?id=<?php echo $row['id']; ?>">Bid</a>
                             </td>
                             <td>
-                                <a href="#">Sell Fish</a> (TODO)
+                                <?php if ($row['is_sold']): ?>
+                                    <a href="unsell_fish.php?id=<?php echo $row['id']; ?>">Unsell Fish</a>
+                                <?php else: ?>
+                                    <a href="sell_fish.php?id=<?php echo $row['id']; ?>">Sell Fish</a>
+                                <?php endif; ?>
                             </td>
                             <td>
                                 <a href="edit_listing.php?id=<?php echo $row['id']; ?>">Edit</a>
@@ -139,8 +143,7 @@
                         <th>Starting Price</th>
                         <th>Current Price</th>
                         <th>Bid Count</th>
-                        <th>Bid</th>
-                        <th>Sell Fish</th>
+                        <th>Is Sold?</th>
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
@@ -154,12 +157,7 @@
                             <td><?php echo htmlspecialchars($row['starting_price']); ?> TL</td>
                             <td><?php echo htmlspecialchars($row['current_price']); ?> TL</td>
                             <td><?php echo htmlspecialchars($row['bid_count']); ?></td>
-                            <td>
-                                <a href="#">Bid</a> (TODO)
-                            </td>
-                            <td>
-                                <a href="#">Sell Fish</a> (TODO)
-                            </td>
+                            <td><?php echo ($row['is_sold'] ? 'Yes' : 'No'); ?></td>
                             <td>
                                 <a href="edit_listing.php?id=<?php echo $row['id']; ?>">Edit</a>
                             </td>
