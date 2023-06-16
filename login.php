@@ -1,6 +1,7 @@
 <?php
 require_once("site/config/site.php");
 require_once("site/config/auto_loaders.php");
+require_once("site/config/db.php");
 
 $userSession = new UserSession();
 if ($userSession->isSiteUserLoggedIn() == true){

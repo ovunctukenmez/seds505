@@ -32,21 +32,23 @@
                     <div class="alert alert-danger" role="alert"><?php echo $data['page_vars']['form_errors'][0]; ?></div>
 	            <?php endif; ?>
 
+                <h1>LOGIN</h1>
                 <div class="well login">
                     <!--LOGIN FORM - BEGIN -->
                     <form class="form-horizontal" name="" action="" method="post" autocomplete="off">
                         <div class="form-group">
-                            <label for="username" class="col-sm-4 control-label">Username</label>
+                            <label for="email" class="col-sm-4 control-label">Email Address</label>
                             <div class="col-sm-8">
                                 <input class="form-control"
-                                       type="text"
-                                       name="username"
-                                       id="username"
-                                       placeholder="Username"
+                                       required
+                                       type="email"
+                                       name="email"
+                                       id="email"
+                                       placeholder="Email Address"
                                        autocomplete="off"
-                                       value="<?php if (isset($data['page_vars']['post_values']['username'])) {
-                                           echo htmlspecialchars($data['page_vars']['post_values']['username']);
-                                       } else { echo 'admin'; } ?>">
+                                       value="<?php if (isset($data['page_vars']['post_values']['email'])) {
+                                           echo htmlspecialchars($data['page_vars']['post_values']['email']);
+                                       } else { echo 'admin@admin.com'; } ?>">
                             </div>
                         </div>
 
@@ -54,6 +56,7 @@
                             <label for="user_password" class="col-sm-4 control-label">Password</label>
                             <div class="col-sm-8">
                                 <input class="form-control"
+                                       required
                                        type="password"
                                        name="user_password"
                                        id="user_password"
@@ -74,8 +77,8 @@
                     </form>
                     <!--LOGIN FORM - END -->
 
-                    <p><a href="#"><i class="fa fa-user"></i> Register</a> (TODO)</p>
-                    <p><a href="#"><i class="fa fa-key"></i> Reset Password</a> (TODO)</p>
+                    <p><a href="register.php"><i class="fa fa-user"></i> Register</a></p>
+                    <p><a href="reset_password.php"><i class="fa fa-key"></i> Reset Password</a></p>
 
                 </div>
 
