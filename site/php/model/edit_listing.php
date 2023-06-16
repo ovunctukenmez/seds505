@@ -186,7 +186,7 @@ EOF;
         $stmt = $db->prepare($sql);
         if ($stmt === false) {
             $page_vars['form_success']  = false;
-            $page_vars['form_errors'][] = 'editCarTrims';
+            $page_vars['form_errors'][] = 'editListing';
             goto end_of_page;
         }
 
