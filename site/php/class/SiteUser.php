@@ -9,6 +9,7 @@ class SiteUser
     public $first_name = '';
     public $last_name = '';
     public $username = '';
+    public $email = '';
 
     public function __construct()
     {
